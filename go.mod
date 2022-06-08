@@ -1,5 +1,6 @@
 module github.com/pharaohthecat/blog-mvc
 
+// +heroku goVersion go1.18
 go 1.18
 
 require (
