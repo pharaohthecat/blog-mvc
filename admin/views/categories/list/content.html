@@ -1,0 +1,38 @@
+{{ define "content" }}
+<h1>
+  Categorias do blog
+</h1>
+<form action="/admin/categories/add" method="post">
+  <div class="input-group">
+    <input type="text" name="category-title" class="form-control" placeholder="Adicionar categoria">
+    <div class="input-group-append">
+      <button type="submit" class="btn btn-success">Salvar</button>
+    </div>
+  </div>
+</form>
+<hr>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Título da categoria</th>
+    <th scope="col">Slug</th>
+    <th scope="col">Data de upload</th>
+    <th scope="col">Transações</th>
+  </tr>
+  </thead>
+  <tbody>
+  {{ range $index,$value := .Categories }}
+  <tr>
+    <th scope="row">{{ $value.ID }}</th>
+    <td>{{ $value.Title }}</td>
+    <td>{{ $value.Slug }}</td>
+    <td>{{ $value.CreatedAt }}</td>
+    <td>
+      <a href="/admin//categories/delete/{{ $value.ID }}" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a>
+    </td>
+  </tr>
+  {{ end }}
+  </tbody>
+</table>
+{{ end }}

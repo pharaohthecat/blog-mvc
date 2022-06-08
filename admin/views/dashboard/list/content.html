@@ -1,0 +1,34 @@
+{{ define "content" }}
+<h1>
+  Postagens no blog 
+  <a href="/admin/new" class="btn btn-outline-primary float-right"><i class="fa fa-plus"></i> Adicionar novo</a>
+</h1>
+<hr>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Imagem de capa</th>
+    <th scope="col">Título</th>
+    <th scope="col">Categoria</th>
+    <th scope="col">Data de upload</th>
+    <th scope="col">Transações</th>
+  </tr>
+  </thead>
+  <tbody>
+  {{ range $index,$value := .Posts }}
+  <tr>
+    <th scope="row">{{ $value.ID }}</th>
+    <td><img width="80px" src="{{ $value.Picture_url }}" alt=""></td>
+    <td>{{ $value.Title }}</td>
+    <td>{{ getCategory $value.CategoryID }}</td>
+    <td>{{ $value.CreatedAt }}</td>
+    <td>
+      <a href="/admin/edit/{{ $value.ID }}" class="btn btn-outline-warning"><i class="fa fa-pen"></i></a>
+      <a href="/admin/delete/{{ $value.ID }}" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a>
+    </td>
+  </tr>
+  {{ end }}
+  </tbody>
+</table>
+{{ end }}
